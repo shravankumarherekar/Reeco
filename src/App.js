@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./assets/styles/globalStyles";
+import MainScreen from "./main-screen-module/MainScreen";
+import { GlobalTypeStyles } from "styled-typography";
+import { ModalProvider } from "styled-react-modal";
+const typographyTheme = {
+  fontSizes: ["12px", "14px", "16px", "20px", "24px", "34px"],
+  fontWeight: ["normal", "medium"],
+  letterSpacing: ["0.4px", "0.1px", "1.25px", "0.25px", "0.5px"],
+  colors:["#000","#d1d1d1"]
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={{ typography: typographyTheme }}>
+      <>
+        <ModalProvider>
+          <GlobalStyle />
+          <GlobalTypeStyles />
+          <MainScreen />
+        </ModalProvider>
+      </>
+    </ThemeProvider>
   );
 }
 
